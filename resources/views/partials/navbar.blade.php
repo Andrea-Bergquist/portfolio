@@ -34,30 +34,57 @@
             {{-- Desktop navigation --}}
             <div class="hidden items-center gap-8 md:flex">
 
-                <a href="#home"
+                <a href="{{ url('/#home') }}"
                     class="text-sm font-medium text-slate-300 transition hover:text-violet-400">
                     Hem
                 </a>
 
-                <a href="#projects"
+                <a href="{{ url('/#projects') }}"
                     class="text-sm font-medium text-slate-300 transition hover:text-violet-400">
                     Projekt
                 </a>
 
-                <a href="#about"
+                <a href="{{ url('/#about') }}"
                     class="text-sm font-medium text-slate-300 transition hover:text-violet-400">
                     Om mig
                 </a>
 
-                <a href="#skills"
+                <a href="{{ url('/#skills') }}"
                     class="text-sm font-medium text-slate-300 transition hover:text-violet-400">
                     Kompetenser
                 </a>
 
-                <a href="#contact"
+                <a href="{{ url('/#contact') }}"
                     class="rounded-xl bg-violet-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-violet-500">
                     Kontakta mig
                 </a>
+
+                {{-- Auth-sektion (Desktop) --}}
+                <div class="flex items-center gap-4 border-l border-white/10 pl-6">
+                    @guest
+                    @if (Route::has('login'))
+                    <a href="{{ route('login') }}"
+                        class="text-sm font-medium text-slate-400 transition hover:text-white">
+                        Logga in
+                    </a>
+                    @endif
+                    @endguest
+
+                    @auth
+                    <a href="{{ route('dashboard') }}"
+                        class="text-sm font-medium {{ request()->routeIs('dashboard') ? 'text-violet-400' : 'text-slate-300 hover:text-violet-400' }} transition">
+                        Dashboard
+                    </a>
+
+                    <form method="POST" action="{{ route('logout') }}" class="inline">
+                        @csrf
+                        <button type="submit"
+                            class="rounded-lg border border-white/10 bg-slate-900 px-3.5 py-2 text-xs font-medium text-slate-300 transition hover:border-rose-500/40 hover:bg-rose-500/10 hover:text-rose-400">
+                            Logga ut
+                        </button>
+                    </form>
+                    @endauth
+                </div>
 
             </div>
 
@@ -105,34 +132,63 @@
             <div class="flex flex-col gap-4">
 
                 <a @click="open = false"
-                    href="#home"
+                    href="{{ url('/#home') }}"
                     class="text-sm text-slate-300 hover:text-violet-400">
                     Hem
                 </a>
 
                 <a @click="open = false"
-                    href="#projects"
+                    href="{{ url('/#projects') }}"
                     class="text-sm text-slate-300 hover:text-violet-400">
                     Projekt
                 </a>
 
                 <a @click="open = false"
-                    href="#about"
+                    href="{{ url('/#about') }}"
                     class="text-sm text-slate-300 hover:text-violet-400">
                     Om mig
                 </a>
 
                 <a @click="open = false"
-                    href="#skills"
+                    href="{{ url('/#skills') }}"
                     class="text-sm text-slate-300 hover:text-violet-400">
                     Kompetenser
                 </a>
 
                 <a @click="open = false"
-                    href="#contact"
+                    href="{{ url('/#contact') }}"
                     class="mt-2 rounded-xl bg-violet-600 px-5 py-3 text-center text-sm font-semibold text-white">
                     Kontakta mig
                 </a>
+
+                {{-- Auth-sektion (Mobil) --}}
+                <div class="mt-2 border-t border-white/10 pt-4 flex flex-col gap-3">
+                    @guest
+                    @if (Route::has('login'))
+                    <a @click="open = false"
+                        href="{{ route('login') }}"
+                        class="rounded-xl border border-white/10 bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-slate-300 hover:text-white">
+                        Logga in
+                    </a>
+                    @endif
+                    @endguest
+
+                    @auth
+                    <a @click="open = false"
+                        href="{{ route('dashboard') }}"
+                        class="rounded-xl border border-violet-500/30 bg-violet-500/10 px-5 py-2.5 text-center text-sm font-medium text-violet-300">
+                        Dashboard
+                    </a>
+
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit"
+                            class="w-full rounded-xl border border-white/10 bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-rose-400 hover:bg-rose-500/10">
+                            Logga ut
+                        </button>
+                    </form>
+                    @endauth
+                </div>
 
             </div>
         </div>
