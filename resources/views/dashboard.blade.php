@@ -27,7 +27,7 @@
             <a href="#" class="rounded-lg border border-white/10 bg-slate-900 px-4 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-slate-800 hover:text-white">
                 Visa live-sida
             </a>
-            <a href="#" class="rounded-lg bg-violet-600 px-4 py-2.5 text-sm font-medium text-white shadow-lg shadow-violet-500/20 transition hover:bg-violet-500">
+            <a href="{{ route('admin.create') }}" class="rounded-lg bg-violet-600 px-4 py-2.5 text-sm font-medium text-white shadow-lg shadow-violet-500/20 transition hover:bg-violet-500">
                 + Nytt projekt
             </a>
         </div>
