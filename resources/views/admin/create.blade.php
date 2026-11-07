@@ -97,7 +97,7 @@
                     <div class="grid grid-cols-1 gap-4 rounded-lg border border-white/10 bg-slate-950/60 p-4 sm:grid-cols-12 items-end">
                         <div class="sm:col-span-5">
                             <label class="block text-xs font-medium text-slate-400">Bildfil</label>
-                            <input type="file" :name="`gallery[${index}]`" accept="image/*" required
+                            <input type="file" :name="'gallery[' + index + '][image]'" accept="image/*" required
                                 class="mt-1.5 block w-full text-xs text-slate-400 file:mr-3 file:rounded-md file:border-0 file:bg-slate-800 file:px-3 file:py-1.5 file:text-xs file:font-medium file:text-slate-200 hover:file:bg-slate-700">
                         </div>
 

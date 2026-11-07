@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Project;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -37,8 +38,11 @@ class AdminController extends Controller
             'gallery.*.caption' => ['nullable', 'string', 'max:255'],
         ]);
 
-        // Spara huvudbilden i storage/app/public/projects
-        $coverPath = $request->file('image')->store('projects', 'public');
+        // Spara huvudbilden i public/img
+        $coverFile = $request->file('image');
+        $coverName = time() . '_' . Str::random(8) . '.' . $coverFile->getClientOriginalExtension();
+        $coverFile->move(public_path('img'), $coverName);
+        $coverPath = 'img/' . $coverName;
 
         // Skapa projektet
         $project = Project::create([
@@ -47,22 +51,27 @@ class AdminController extends Controller
             'image' => $coverPath,
         ]);
 
-        // Spara eventuella galleribilder via relationen images()
-        if ($request->has('gallery')) {
-            foreach ($request->gallery as $item) {
-                if (isset($item['image'])) {
-                    $galleryPath = $item['image']->store('projects/gallery', 'public');
+        // Spara eventuella galleribilder i public/img
+        $gallery = $request->file('gallery', []);
 
-                    $project->images()->create([
-                        'image' => $galleryPath,
-                        'caption' => $item['caption'] ?? null,
-                    ]);
-                }
+        foreach ($gallery as $index => $item) {
+            if (isset($item['image'])) {
+                $galleryFile = $item['image'];
+
+                $galleryName = time() . '_' . Str::random(8) . '.' .
+                    $galleryFile->getClientOriginalExtension();
+
+                $galleryFile->move(public_path('img'), $galleryName);
+
+                $project->images()->create([
+                    'image' => 'img/' . $galleryName,
+                    'caption' => $request->input("gallery.$index.caption"),
+                ]);
             }
         }
 
         return redirect()
-            ->route('admin.index')
+            ->route('dashboard')
             ->with('success', 'Projektet har sparats!');
     }
 
