@@ -114,12 +114,13 @@
 
 
             {{-- PROJECT 1 --}}
+            @foreach ($projects as $project)
             <article class="group overflow-hidden rounded-2xl border border-white/10 bg-slate-950 transition duration-300 hover:-translate-y-2 hover:border-violet-500/50">
 
                 <div class="relative overflow-hidden bg-slate-800">
 
                     <img
-                        src="{{ asset('images/projects/project-1.jpg') }}"
+                        src="{{ asset($project->image) }}"
                         alt="Skärmdump från projekt ett"
                         class="aspect-[16/10] w-full object-cover transition duration-500 group-hover:scale-105">
 
@@ -135,12 +136,11 @@
                     </div>
 
                     <h3 class="text-xl font-bold text-white">
-                        Projektets namn
+                        {{ $project->title }}
                     </h3>
 
                     <p class="mt-3 text-sm leading-6 text-slate-400">
-                        En kort beskrivning av projektet, vilka problem det löser
-                        och vilka funktioner som har utvecklats.
+                        {{ $project->description }}
                     </p>
 
                     <a href="#contact"
@@ -152,82 +152,7 @@
                 </div>
 
             </article>
-
-
-            {{-- PROJECT 2 --}}
-            <article class="group overflow-hidden rounded-2xl border border-white/10 bg-slate-950 transition duration-300 hover:-translate-y-2 hover:border-violet-500/50">
-
-                <div class="overflow-hidden bg-slate-800">
-
-                    <img
-                        src="{{ asset('images/projects/project-2.jpg') }}"
-                        alt="Skärmdump från projekt två"
-                        class="aspect-[16/10] w-full object-cover transition duration-500 group-hover:scale-105">
-
-                </div>
-
-                <div class="p-6">
-
-                    <div class="mb-4 flex flex-wrap gap-2">
-                        <span class="rounded-md bg-red-500/10 px-3 py-1 text-xs font-medium text-red-400">Laravel</span>
-                        <span class="rounded-md bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-400">MySQL</span>
-                    </div>
-
-                    <h3 class="text-xl font-bold text-white">
-                        Projektets namn
-                    </h3>
-
-                    <p class="mt-3 text-sm leading-6 text-slate-400">
-                        Beskriv projektet och lyft fram de viktigaste funktionerna
-                        och teknikerna som användes.
-                    </p>
-
-                    <a href="#contact"
-                        class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-violet-400 transition hover:text-violet-300">
-                        Läs mer →
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            {{-- PROJECT 3 --}}
-            <article class="group overflow-hidden rounded-2xl border border-white/10 bg-slate-950 transition duration-300 hover:-translate-y-2 hover:border-violet-500/50">
-
-                <div class="overflow-hidden bg-slate-800">
-
-                    <img
-                        src="{{ asset('images/projects/project-3.jpg') }}"
-                        alt="Skärmdump från projekt tre"
-                        class="aspect-[16/10] w-full object-cover transition duration-500 group-hover:scale-105">
-
-                </div>
-
-                <div class="p-6">
-
-                    <div class="mb-4 flex flex-wrap gap-2">
-                        <span class="rounded-md bg-red-500/10 px-3 py-1 text-xs font-medium text-red-400">Laravel</span>
-                        <span class="rounded-md bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-400">Alpine.js</span>
-                    </div>
-
-                    <h3 class="text-xl font-bold text-white">
-                        Projektets namn
-                    </h3>
-
-                    <p class="mt-3 text-sm leading-6 text-slate-400">
-                        En presentation av ytterligare ett projekt med information
-                        om funktionalitet och tekniska lösningar.
-                    </p>
-
-                    <a href="#contact"
-                        class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-violet-400 transition hover:text-violet-300">
-                        Läs mer →
-                    </a>
-
-                </div>
-
-            </article>
+            @endforeach
 
         </div>
 
