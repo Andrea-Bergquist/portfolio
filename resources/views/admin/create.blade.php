@@ -21,7 +21,7 @@
             </p>
         </div>
 
-        <a href="{{ route('admin.index') }}" class="rounded-lg border border-white/10 bg-slate-900 px-4 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-slate-800 hover:text-white">
+        <a href="{{ route('dashboard') }}" class="rounded-lg border border-white/10 bg-slate-900 px-4 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-slate-800 hover:text-white">
             ← Tillbaka
         </a>
     </div>

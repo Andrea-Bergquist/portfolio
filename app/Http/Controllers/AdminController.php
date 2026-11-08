@@ -13,7 +13,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::with('images')->latest()->get();
+
+        return view('admin.index', compact('projects'));
     }
 
     /**
@@ -104,6 +106,12 @@ class AdminController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $project = Project::findOrFail($id);
+
+        $project->delete();
+
+        return redirect()
+            ->route('admin.index')
+            ->with('success', 'Projektet har tagits bort!');
     }
 }
