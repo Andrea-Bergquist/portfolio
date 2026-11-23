@@ -33,5 +33,12 @@
         </div>
     </div>
 
+    <!-- Bekräftelsemeddelande vid skapande/ändring/radering -->
+    @if (session('success'))
+    <div class="mt-6 rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-4 text-sm text-emerald-300">
+        {{ session('success') }}
+    </div>
+    @endif
+
 </div>
 @endsection
